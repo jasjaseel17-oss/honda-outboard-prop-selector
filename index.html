@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Honda Outboard & Prop Selector</title>
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="description" content="Mobile-friendly calculator to estimate boat horsepower needs, suggest Honda outboards and basic propeller sizes." />
+</head>
+<body>
+  <header>
+    <h1>Honda Outboard & Prop Selector</h1>
+    <p class="subtitle">Quick HP selection + basic propeller recommendation</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Boat Details</h2>
+      <form id="calc-form">
+        <div class="grid">
+          <label>Boat length (ft)
+            <input type="number" id="length" inputmode="decimal" min="5" step="0.1" placeholder="e.g., 20" required />
+          </label>
+          <label>Transom width (ft)
+            <input type="number" id="width" inputmode="decimal" min="2" step="0.1" placeholder="e.g., 7.5" required />
+          </label>
+          <label>Total loaded weight (lb)
+            <input type="number" id="weight" inputmode="decimal" min="200" step="1" placeholder="Hull + fuel + people + gear" required />
+          </label>
+          <label>Passengers (count)
+            <input type="number" id="passengers" inputmode="numeric" min="1" step="1" value="2" />
+          </label>
+          <label>Hull type
+            <select id="hullType">
+              <option value="other" selected>V-hull / all others</option>
+              <option value="flat">Flat bottom / hard chine</option>
+            </select>
+          </label>
+          <label>Steering / Transom
+            <select id="steering">
+              <option value="remote20" selected>Remote steering & ≥20&quot; transom</option>
+              <option value="tillerOrLow">No remote or &lt;20&quot; transom</option>
+            </select>
+          </label>
+          <label>Use case
+            <select id="useCase">
+              <option value="cruise" selected>Cruising / everyday</option>
+              <option value="work">Load carrying / workboat</option>
+              <option value="sport">Watersports / high performance</option>
+              <option value="displacement">Displacement speed only</option>
+            </select>
+          </label>
+          <label>Desired cruise speed (mph)
+            <input type="number" id="targetSpeed" inputmode="decimal" min="5" step="1" placeholder="Optional" />
+          </label>
+        </div>
+        <button type="submit" class="primary">Calculate</button>
+        <button type="button" id="resetBtn" class="ghost">Reset</button>
+      </form>
+    </section>
+
+    <section id="results" class="card" hidden>
+      <h2>Results</h2>
+      <div class="results-grid">
+        <div>
+          <h3>USCG legal maximum HP</h3>
+          <p id="uscgMax">—</p>
+        </div>
+        <div>
+          <h3>Recommended HP range</h3>
+          <p id="hpRange">—</p>
+        </div>
+        <div>
+          <h3>Estimated HP for target speed</h3>
+          <p id="hpSpeed">—</p>
+        </div>
+        <div>
+          <h3>Suggested Honda models</h3>
+          <p id="hondaModels">—</p>
+        </div>
+        <div>
+          <h3>Basic propeller suggestion</h3>
+          <p id="propSuggestion">—</p>
+        </div>
+      </div>
+
+      <details>
+        <summary>Technical details</summary>
+        <div id="techDetails"></div>
+      </details>
+
+      <div class="cta-row">
+        <a id="shareLink" class="primary" href="#" download>Share / Save Results</a>
+      </div>
+    </section>
+
+    <section class="card muted">
+      <h2>Notes</h2>
+      <ul>
+        <li>USCG max HP is a guideline based on public rules; always verify with your boat's capacity plate & local regulations.</li>
+        <li>Prop suggestions are <em>basic</em> starting points. Final pitch/diameter depends on hull, load, altitude, and achieving WOT RPM within engine spec.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Honda Outboard & Prop Selector. Built for quick field use on phones.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
